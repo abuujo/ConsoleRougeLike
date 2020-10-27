@@ -6,7 +6,7 @@ class Player
 public:
 	Player();
 
-	void init(int level, int health, int ac, int mod, int dex, int pot, int gold);
+	void init(int level, int health, int ac, int mod, int dex, int pot, int gold, int visionRadius);
 
 	//setters
 	void setPosition(int x, int y);
@@ -25,6 +25,7 @@ public:
 	int getDexterirty();
 	int getHealthPots();
 	int getGold();
+	int getVision();
 
 private:
 	//properties
@@ -33,6 +34,7 @@ private:
 	int _armorClass;
 	int _weaponMod;
 	int _dexterity;
+	int _visionRadius;
 
 	//inventory 
 	int _healthPots;

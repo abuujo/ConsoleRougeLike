@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ScreenManager.h"
+#include "GraphicalUserInterface.h"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ private:
 	// Variables
 	vector <string> _screenMatrix;
 	ScreenManager screenManager;
-
+	GraphicalUserInterface gui;
 	
 };
 

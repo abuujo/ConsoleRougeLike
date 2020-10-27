@@ -13,7 +13,13 @@ void GameManager::startGame() {
 			options();
 			break;
 		case 3: // Exit Game
-			exit(1);
+			if (gui.exitGameScreen() == false) {
+				startGame();
+			}
+			else {
+				system("CLS");
+				exit(1);
+			}
 		default:// Return to menu
 			startGame();
 	}
@@ -76,7 +82,14 @@ void GameManager::runGame() {
 			break;
 		case 'q':
 		case 'Q': // Quit Game Screen
-			screenManager.exitGameScreen();
+			if (gui.exitGameScreen() == false) {
+				screenManager.updateScreen(0, 0);
+				break;
+			}
+			else {
+				system("CLS");
+				exit(1);
+			}
 			break;
 		default:
 			break;

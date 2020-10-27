@@ -125,18 +125,22 @@
   <ItemGroup>
     <ClCompile Include="DiceHelper.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GraphicalUserInterface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DiceHelper.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GraphicalUserInterface.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="Npc.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Screen.h" />
     <ClInclude Include="ScreenManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

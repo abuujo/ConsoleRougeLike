@@ -5,7 +5,7 @@ Player::Player() {
 	_y = 1;
 }
 
-void Player::init(int level, int health, int ac, int mod, int dex, int pot, int gold){
+void Player::init(int level, int health, int ac, int mod, int dex, int pot, int gold, int vision){
 	_level = level;
 	_health = health;
 	_armorClass = ac;
@@ -13,6 +13,7 @@ void Player::init(int level, int health, int ac, int mod, int dex, int pot, int 
 	_dexterity = dex;
 	_healthPots = pot;
 	_gold = gold;
+	_visionRadius = vision;
 }
 
 //setters
@@ -73,4 +74,8 @@ int Player::getWeaponMod() {
 
 int Player::getGold() {
 	return _gold;
+}
+
+int Player::getVision() {
+	return _visionRadius;
 }

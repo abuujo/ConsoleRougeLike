@@ -1,9 +1,3 @@
-﻿  ScreenManager.cpp
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(99,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(100,21): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(173,21): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(224,9): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(232,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(280,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(281,21): warning C4018:  '<': signed/unsigned mismatch
+﻿  GameManager.cpp
+C:\Users\John\source\repos\NewTown\GameManager.cpp(114,20): warning C4018:  '<': signed/unsigned mismatch
   NewTown.vcxproj -> C:\Users\John\source\repos\NewTown\Debug\NewTown.exe

@@ -1,73 +1,51 @@
 #include "ScreenManager.h"
 
+
 // Constructor and Desctructor functions for init
 
 ScreenManager::ScreenManager() {
-	setWindow(100, 40);
+	screen.setWindow(100, 40);
 	clearVector();
-
 }
 
 ScreenManager::~ScreenManager() {
 	clearVector();
 }
 
-// Exit game screen 
-void ScreenManager::exitGameScreen() {
-
-	// output endgame screen
-	outputText(40, 13, 15, "                       ");
-	outputText(40, 14, 12, "      Exit Game?       ");
-	outputText(40, 15, 12, "    y = yes  n = no    ");
-	outputText(40, 16, 15, "                       ");
-
-	// wait for enter key
-	char c = _getch();
-	switch (c) {
-	case 'y':
-		system("CLS");
-		exit(1);
-	case 'n':
-		updateScreen(0, 0);
-		break;
-	default:
-		endGameScreen();
-	}
-}
 //Display the main menu.
 int ScreenManager::buildMenu() {
 	int chosen = 3;
 	system("CLS");
-	outputText(20,5,11,"New Town - test rougelike :D");
-	outputText(20, 6, 11, "Move up W move down S enter to select");
+	screen.outputText(20,5,11,"New Town - test rougelike :D");
+	screen.outputText(20, 6, 11, "Move up W move down S enter to select");
 	char c = '0';
 
 	int selected = 1;
 	while(c != char(13)){
 		// Menu
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
-		gotoxy(20, 7 + selected);
+		screen.gotoxy(20, 7 + selected);
 		cout << "->";
 
-		gotoxy(23, 8);
+		screen.gotoxy(23, 8);
 		cout << "Start";
-		gotoxy(23, 9);
+		screen.gotoxy(23, 9);
 		cout << "Options";
-		gotoxy(23, 10);
+		screen.gotoxy(23, 10);
 		cout << "Quit";
 
 
-		gotoxy(100, 40);
+		screen.gotoxy(100, 40);
 		c = _getch();
 
 		if (c == 's') {
 			selected += 1;
-			gotoxy(20, 7 + selected-1);
+			screen.gotoxy(20, 7 + selected-1);
 			cout << "  ";
 		}
 		else if (c == 'w') {
 			selected -= 1;
-			gotoxy(20, 7 + selected + 1);
+			screen.gotoxy(20, 7 + selected + 1);
 			cout << "  ";
 		}
 		if (selected < 1) {
@@ -96,17 +74,19 @@ void ScreenManager::buildMap(char level) {
 	inputData(levelFile, &_levelData); // Level
 
 	// Find and init Entities.
+	int tileNo = 0;
 	for (int i = 0; i < _levelData.size(); i++) {
 		for (int j = 0; j < _levelData[i].size(); j++) {
 			char tile = _levelData[i][j];
 			switch (tile) {
 			case '8':
-				_player.init(1,20,13,3,16,0,0);
+				_player.init(1,20,13,3,16,0,0,7);
 				_player.setPosition(j,i);
 				break;
 			case '7':
 				_NPCS.push_back(Npc(10, 10, 3, 12, j, i));
 			}
+			tileNo++;
 		}
 	}
 }
@@ -121,21 +101,21 @@ void ScreenManager::displayGame(char level) {
 	buildMap(level);
 	buildLegend();
 
-	printVector(2, 3, _borderlData);
-	printVector(5, 5, _levelData);
-	printVector(70, 5, _legendData);
+	printVector(2, 3, _borderlData, false);
+	printVector(5, 5, _levelData, true);
+	printVector(70, 5, _legendData, false);
 
-	outputText(78, 18, 15, "Legend");
-	outputText(73, 20, 10, "T"); 
-	outputText(75, 20, 15, "tree");
-	outputText(73, 21, 12, ".");
-	outputText(75, 21, 15, "floor");
-	outputText(73, 22, 14, "#");
-	outputText(75, 22, 14, "wall");
-	outputText(82, 20, 11, "G");
-	outputText(84, 20, 15, "goblin");
-	outputText(82, 21, 13, "@");
-	outputText(84, 21, 15, "player");
+	screen.outputText(78, 18, 15, "Legend");
+	screen.outputText(73, 20, 10, "T");
+	screen.outputText(75, 20, 15, "tree");
+	screen.outputText(73, 21, 12, ".");
+	screen.outputText(75, 21, 15, "floor");
+	screen.outputText(73, 22, 14, "#");
+	screen.outputText(75, 22, 14, "wall");
+	screen.outputText(82, 20, 11, "G");
+	screen.outputText(84, 20, 15, "goblin");
+	screen.outputText(82, 21, 13, "@");
+	screen.outputText(84, 21, 15, "player");
 }
 
 void ScreenManager::updateScreen(int dx, int dy) {
@@ -190,21 +170,21 @@ void ScreenManager::updateScreen(int dx, int dy) {
 		}
 
 		if (_player.getHealth() <= 0) {
-			endGameScreen();
+			gui.endGameScreen();
 		}
 
 		break;
 	}
 
-	outputText(76, 7, 15, "Player Stats");
-	outputText(74, 9, 15, "                ");
-	outputText(74, 9, 15, "Health : ");
+	screen.outputText(76, 7, 15, "Player Stats");
+	screen.outputText(74, 9, 15, "                ");
+	screen.outputText(74, 9, 15, "Health :  ");
 
 	int healthColour = (_player.getHealth() > 10) ? 10 : 12;
-	outputText(82, 9, healthColour, to_string(_player.getHealth()));
+	screen.outputText(83, 9, healthColour, to_string(_player.getHealth()));
 
 	printMessage();
-	printVector(5, 5, _levelData);
+	printVector(5, 5, _levelData, true);
 
 }
 
@@ -216,13 +196,13 @@ void ScreenManager::addMessage(string message) {
 }
 
 void ScreenManager::printMessage() {
-	gotoxy(3, 30);
+	screen.gotoxy(3, 30);
 	for (int i = 0; i < 4; i++) {
-		outputText(3, 30 + i, 15, "                                             ");
+		screen.outputText(3, 30 + i, 15, "                                             ");
 	}
 	for (int i = 0; i < 4; i++) {
 		if (i < _gameMessages.size()) {
-			outputText(3, 30 + i, 14 , _gameMessages[i]);
+			screen.outputText(3, 30 + i, 14 , _gameMessages[i]);
 		}
 	}
 }
@@ -243,13 +223,6 @@ void ScreenManager::randomMonsterMovement() {
 }
 
 // Private Functions : To be used only by ScreenManager Class
-
-// Use cout to output message at x, y co-ords with attribute
-void ScreenManager::outputText(int x, int y, int attribute, string message) {
-	gotoxy(x, y);
-	SetConsoleTextAttribute(Handle, attribute);
-	cout << message;
-}
 
 // Load data from an input path into a string vector
 void ScreenManager::inputData(string filePath, vector <string>* _vector) {
@@ -276,51 +249,24 @@ void ScreenManager::clearVector() {
 }
 
 // Print the data from passed vector
-void ScreenManager::printVector(int startx, int starty, vector <string> _vector) {
+void ScreenManager::printVector(int startx, int starty, vector <string> _vector, bool vision) {
+
+	int tileIndex = 0;
 	for (int y = 0; y < _vector.size(); y++) {
 		for (int x = 0; x < _vector[y].length(); x++) {
+
+			bool inVision = isInRange(x,y);
+			if (vision == true && inVision == false) {
+				screen.outputChar(15, startx + x, starty + y, ' ');
+				continue;
+			}
 			// Get attribute
 			int type = _vector[y][x] - '0';
-			outputChar(tiles[type].colour, startx + x, starty + y, tiles[type].tile);
+			screen.outputChar(tiles[type].colour, startx + x, starty + y, tiles[type].tile);
+
+			tileIndex++;
 		}
 	}
-}
-
-// Use cout to output char at x, y co-ords with attribute
-void ScreenManager::outputChar(int attribute, int x, int y, char c) {
-	gotoxy(x, y);
-	SetConsoleTextAttribute(Handle, attribute);
-	cout << c;
-}
-
-// Move to co-ords on the console screen
-void ScreenManager::gotoxy(int x, int y) {
-	COORD coord;
-	coord.X = x;
-	coord.Y = y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-}
-
-// Establish the console window properties
-void ScreenManager::setWindow(int Width, int Height) {
-	_COORD coord;
-	coord.X = Width;
-	coord.Y = Height;
-
-	_SMALL_RECT Rect;
-	Rect.Top = 0;
-	Rect.Left = 0;
-	Rect.Bottom = Height - 1;
-	Rect.Right = Width - 1;
-
-	Handle = GetStdHandle(STD_OUTPUT_HANDLE);      // Get Handle
-	SetConsoleScreenBufferSize(Handle, coord);            // Set Buffer Size
-	SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Set Window Size
-
-	CONSOLE_CURSOR_INFO     cursorInfo;
-	GetConsoleCursorInfo(Handle, &cursorInfo);
-	cursorInfo.bVisible = false; // set the cursor visibility (get rid of _)
-	SetConsoleCursorInfo(Handle, &cursorInfo);
 }
 
 // Player attacks Goblin, who attacks back (bool return if enemy is dead)
@@ -355,20 +301,99 @@ bool ScreenManager::combatManager(Npc* enemy) {
 	return false;
 }
 
-// End game screen 
-void ScreenManager::endGameScreen() {
+// Check fov range of Tile
+bool ScreenManager::isInRange(int tileX, int tileY) {
+	int playerX;
+	int playerY;
+	int playerVision = _player.getVision();
+	_player.getPosition(playerX, playerY);
 
-	// output endgame screen
-	outputText(40, 13, 15, "                       ");
-	outputText(40, 14, 12, "     YOU HAVE DIED     ");
-	outputText(40, 15, 12, "     Press enter..     ");
-	outputText(40, 16, 15, "                       ");
+	int normX = tileX - playerX;
+	int normY = tileY - playerY;
+	int mag = magnitude(normX, normY);
 
-	// wait for enter key
-	while (_getch() != char(13)) {
-		continue;
+	if (mag <= playerVision) {
+		
+		return fov(tileX, tileY, playerX, playerY);
 	}
-	system("CLS");
-	exit(1);
+	return false;
 }
 
+// return SQRT(x^2+y^2)
+int ScreenManager::magnitude(int x, int y) {
+	return sqrt(pow(x,2)+pow(y,2));
+}
+
+// Check every cell between two points in a line.
+bool ScreenManager::fov(int x1, int y1, int x2, int y2) {
+	//here x1 y1 are tile and x2 y2 are player
+
+	return line(x1, y1, x2, y2);
+	return true;
+}
+
+bool ScreenManager::line(int x1, int y1, int x2, int y2) {
+	int w = x2 - x1;
+	int h = y2 - y1;
+	int dx1 = 0;
+	int dy1 = 0;
+	int dx2 = 0;
+	int dy2 = 0;
+
+	if (w < 0) {
+		dx1 = -1;
+	} else if (w > 0) {
+		dx1 = 1;
+	} 
+	
+	if (h < 0) {
+		dy1 = -1;
+	} else if (h > 0) {
+		dy1 = 1;
+	}
+
+	if (w < 0) {
+		dx2 = -1;
+	}
+	else if (w > 0) {
+		dx2 = 1;
+	}
+
+	int longest = abs(w);
+	int shortest = abs(h);
+
+	if (!(longest > shortest)) {
+		longest = abs(h);
+		shortest = abs(w);
+	}
+
+	if (h < 0) {
+		dy2 = -1;
+	}
+	else if (h > 0) {
+		dy2 = 1;
+	}
+	dx2 = 0;
+
+	int numerator = longest >> 1;
+
+	bool first = true;
+	for (int i = 0; i <= longest; i++) {
+
+		if (_levelData[y1][x1] == '1') {
+			return false;
+		}
+		numerator += shortest;
+		if (!(numerator < longest)) {
+			numerator -= longest;
+			x1 += dx1;
+			y1 += dy1;
+		}
+		else {
+			x1 += dx2;
+			y1 += dy2;
+		}
+
+	}
+	return true;
+}
