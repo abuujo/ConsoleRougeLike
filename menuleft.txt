@@ -1,6 +1,0 @@
-Menu:
-
-Spells
-Items
-Armour
-Wepons

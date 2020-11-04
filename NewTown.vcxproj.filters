@@ -9,64 +9,81 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Header Files">
+    <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="src\components\Npc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\DiceHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\GraphicalUserInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\MapGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\Screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\ScreenManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DiceHelper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Npc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ScreenManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MapGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Screen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicalUserInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h">
-      <Filter>Source Files\Header Files</Filter>
+    <ClInclude Include="src\components\Npc.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DiceHelper.h">
-      <Filter>Source Files\Header Files</Filter>
+    <ClInclude Include="src\components\Player.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Npc.h">
-      <Filter>Source Files\Header Files</Filter>
+    <ClInclude Include="src\helper\DiceHelper.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>Source Files\Header Files</Filter>
+    <ClInclude Include="src\helper\GameManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenManager.h">
-      <Filter>Source Files\Header Files</Filter>
+    <ClInclude Include="src\helper\GraphicalUserInterface.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MapGenerator.h">
-      <Filter>Source Files\Header Files</Filter>
+    <ClInclude Include="src\helper\MapGenerator.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Screen.h">
-      <Filter>Source Files\Header Files</Filter>
+    <ClInclude Include="src\helper\Screen.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicalUserInterface.h">
-      <Filter>Source Files\Header Files</Filter>
+    <ClInclude Include="src\helper\ScreenManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="res\border.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="res\legend.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="res\menuleft.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="res\settings.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

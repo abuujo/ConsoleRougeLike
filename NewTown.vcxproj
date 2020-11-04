@@ -18,6 +18,34 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\components\Npc.cpp" />
+    <ClCompile Include="src\components\Player.cpp" />
+    <ClCompile Include="src\helper\DiceHelper.cpp" />
+    <ClCompile Include="src\helper\GameManager.cpp" />
+    <ClCompile Include="src\helper\GraphicalUserInterface.cpp" />
+    <ClCompile Include="src\helper\MapGenerator.cpp" />
+    <ClCompile Include="src\helper\Screen.cpp" />
+    <ClCompile Include="src\helper\ScreenManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\components\Npc.h" />
+    <ClInclude Include="src\components\Player.h" />
+    <ClInclude Include="src\helper\DiceHelper.h" />
+    <ClInclude Include="src\helper\GameManager.h" />
+    <ClInclude Include="src\helper\GraphicalUserInterface.h" />
+    <ClInclude Include="src\helper\MapGenerator.h" />
+    <ClInclude Include="src\helper\Screen.h" />
+    <ClInclude Include="src\helper\ScreenManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\1.txt" />
+    <Text Include="res\border.txt" />
+    <Text Include="res\legend.txt" />
+    <Text Include="res\menuleft.txt" />
+    <Text Include="res\settings.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{6E60E573-CCD9-4F52-A7FE-412D0329E8E6}</ProjectGuid>
@@ -122,27 +150,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="DiceHelper.cpp" />
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="GraphicalUserInterface.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MapGenerator.cpp" />
-    <ClCompile Include="Npc.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Screen.cpp" />
-    <ClCompile Include="ScreenManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DiceHelper.h" />
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="GraphicalUserInterface.h" />
-    <ClInclude Include="MapGenerator.h" />
-    <ClInclude Include="Npc.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Screen.h" />
-    <ClInclude Include="ScreenManager.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

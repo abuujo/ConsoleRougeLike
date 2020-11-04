@@ -1,4 +1,4 @@
-#include "GameManager.h"
+#include "src/helper/GameManager.h"
 
 // minimal main function.
 int main() {
