@@ -1,10 +1,21 @@
 ﻿  ScreenManager.cpp
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(78,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(79,21): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(153,21): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(204,9): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(212,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(255,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(256,21): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\John\source\repos\NewTown\ScreenManager.cpp(323,13): warning C4244:  'return': conversion from 'double' to 'int', possible loss of data
-  NewTown.vcxproj -> C:\Users\John\source\repos\NewTown\Debug\NewTown.exe
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(78,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(79,21): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(153,21): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(204,9): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(212,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(255,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(256,21): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(323,13): warning C4244:  'return': conversion from 'double' to 'int', possible loss of data
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(337,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(380,24): warning C4244:  'argument': conversion from 'float' to 'const _Ty', possible loss of data
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(380,24): warning C4244:         with
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(380,24): warning C4244:         [
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(380,24): warning C4244:             _Ty=int
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(380,24): warning C4244:         ]
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(381,24): warning C4244:  'argument': conversion from 'float' to 'const _Ty', possible loss of data
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(381,24): warning C4244:         with
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(381,24): warning C4244:         [
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(381,24): warning C4244:             _Ty=int
+C:\Users\John\Desktop\Projects\NewTown\ScreenManager.cpp(381,24): warning C4244:         ]
+  NewTown.vcxproj -> C:\Users\John\Desktop\Projects\NewTown\Debug\NewTown.exe

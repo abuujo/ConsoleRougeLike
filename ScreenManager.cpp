@@ -313,7 +313,7 @@ bool ScreenManager::isInRange(int tileX, int tileY) {
 	int mag = magnitude(normX, normY);
 
 	if (mag <= playerVision) {
-		return true; // FOV HERE
+		return fov(tileX, tileY, playerX, playerY);
 	}
 	return false;
 }
@@ -327,55 +327,60 @@ int ScreenManager::magnitude(int x, int y) {
 // that match the line algorithm. 
 bool ScreenManager::fov(int tileX, int tileY, int pX, int pY) {
 
-	bool returnBlocked = true;
+	// Draw a line from the player and check all the tiles that exist in that line
+	line_algorithm(pX, pY, tileX, tileY, &_lineData);
+	bool returnVal = true;
+	string message;
 
-	// Case where a tile is in one of the cardinal directions of the player
-	if (tileX == pX) {
-		int lowest = (tileY < pY) ? tileY : pY;
-		int highest = (lowest == tileY) ? pY : tileY;
-		for (int i = lowest; i < highest; i++) {
-			returnBlocked = (_levelData[i][pX] == '1') ? false : returnBlocked;
+	// sift through linedata to determine if the player has vision on the tile.
+	int count = 0;
+	for (int i = 0; i < _lineData.size() - 1;  i+= 2) {
+		int x = _lineData[i];
+		int y = _lineData[i+1];
+
+		if ((_levelData[y][x] ) == '1' && i != _lineData.size()-1) {
+			count++;
 		}
 	}
 
-	if (tileY == pY) {
-		int lowest = (tileX < pX) ? tileX : pX;
-		int highest = (lowest == tileX) ? pX : tileX;
-		for (int i = lowest; i < highest; i++) {
-			returnBlocked = (_levelData[pY][i] == '1') ? false : returnBlocked;
-		}
+	if (count >= 1) {
+		returnVal = false;
 	}
 
-
-	// Case where tile is North East of the player
-	//  P     
-	//                 T
-	// Note this same code can be used if the two swap places. 
-	if (tileX < pX && tileY < pY) {
-		return line(tileX, tileY, pX, pY);
-	} else if(tileX > pX && tileY > pY) {
-		return line(pX, pY, tileX, tileY);
-	}
-	return returnBlocked;
+	_lineData.clear();
+	return returnVal;
 }
 
+// Basic distance algorithm.
+float distance2d(int x1, int y1, int x2, int y2) {
+	float dx = (float)x1 - (float)x2;
+	float dy = (float)y1 - (float)y2;
+	return sqrt((dx * dx) + (dy * dy));
+}
 
-// We care about the slope or the line
-bool ScreenManager::line(int x1, int y1, int x2, int y2) {
-	int m_new = 2 * (y2 - y1);
-	int slope_error_new = m_new - (x2 - x1);
-	for (int x = x1, y = y1; x <= x2; x++)
-	{
+// shoutout to rltk
+void ScreenManager::line_algorithm(int x1, int y1, int x2, int y2, vector <int>* _lineData) {
+	float x = static_cast<float>(x1) + 0.5F;
+	float y = static_cast<float>(y1) + 0.5F;
+
+	float dest_x = static_cast<float>(x2);
+	float dest_y = static_cast<float>(y2);
+
+	float n_steps = distance2d(x1, y1, x2, y2);
+	int steps = static_cast<const int>(std::floor(n_steps) + 1);
+
+	float slope_x = (dest_x - x) / n_steps;
+	float slope_y = (dest_y - y) / n_steps;
+
+	for (int i = 0; i < steps; ++i) {
+
+		// Create a string structure with xychar
+		//[0] -> x [1] -> y [2] -> char (tile index)
 		
-		// Add slope to increment angle formed 
-		slope_error_new += m_new;
-
-		// Slope error reached limit, time to 
-		// increment y and update slope error. 
-		if (slope_error_new >= 0)
-		{
-			y++;
-			slope_error_new -= 2 * (x2 - x1);
-		}
+		_lineData->push_back(x);
+		_lineData->push_back(y);
+		x += slope_x;
+		y += slope_y;
 	}
+
 }

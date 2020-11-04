@@ -43,10 +43,11 @@ private:
 	bool isInRange(int tileX, int tileY);
 	int magnitude(int x, int y);
 	bool fov(int x1, int y1, int x2, int y2);
-	bool line(int x1, int y1, int x2, int y2);
+	void line_algorithm(int x1, int y1, int x2, int y2, vector <int>* _lineData);
 
 	// Variables
 	vector <string> _levelData;
+	vector <int> _lineData;
 	vector <string> _legendData;
 	vector <string> _borderlData;
 	vector <string> _gameMessages;
