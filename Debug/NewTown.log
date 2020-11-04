@@ -1,3 +1,10 @@
-﻿  GameManager.cpp
-C:\Users\John\source\repos\NewTown\GameManager.cpp(114,20): warning C4018:  '<': signed/unsigned mismatch
+﻿  ScreenManager.cpp
+C:\Users\John\source\repos\NewTown\ScreenManager.cpp(78,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\source\repos\NewTown\ScreenManager.cpp(79,21): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\source\repos\NewTown\ScreenManager.cpp(153,21): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\source\repos\NewTown\ScreenManager.cpp(204,9): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\source\repos\NewTown\ScreenManager.cpp(212,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\source\repos\NewTown\ScreenManager.cpp(255,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\source\repos\NewTown\ScreenManager.cpp(256,21): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\John\source\repos\NewTown\ScreenManager.cpp(323,13): warning C4244:  'return': conversion from 'double' to 'int', possible loss of data
   NewTown.vcxproj -> C:\Users\John\source\repos\NewTown\Debug\NewTown.exe

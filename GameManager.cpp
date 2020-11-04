@@ -60,10 +60,14 @@ void GameManager::runGame() {
 			//screenManager.randomMonsterMovement();
 		}
 
-
 		char input;
 		input = _getch();
 		switch (input) {
+		case 'h' :
+			if (gui.characterMenu() == false) {
+				screenManager.updateScreen(0, 0);
+			}
+			break;
 		case 'w':
 		case 'W': // Move Up
 			screenManager.updateScreen(0,-1);

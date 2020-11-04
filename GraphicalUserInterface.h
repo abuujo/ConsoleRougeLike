@@ -9,6 +9,7 @@ class GraphicalUserInterface
 public:
 	void endGameScreen();
 	bool exitGameScreen();
+	bool characterMenu();
 
 private:
 	Screen screen;

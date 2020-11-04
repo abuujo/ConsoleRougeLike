@@ -33,15 +33,13 @@ public:
 	void updateScreen(int dx, int dy);
 	void printMessage();
 	void randomMonsterMovement();
-	void exitGameScreen();
+	void addMessage(string message);
 
 private:
 	void clearVector();
-	void addMessage(string message);
 	void inputData(string filePath, vector <string> *_vector);
 	void printVector(int startx, int starty, vector <string> _vector, bool vision);
 	bool combatManager(Npc* enemy);
-	void endGameScreen();
 	bool isInRange(int tileX, int tileY);
 	int magnitude(int x, int y);
 	bool fov(int x1, int y1, int x2, int y2);

@@ -43,3 +43,4 @@ void Screen::outputText(int x, int y, int attribute, string message) {
 	SetConsoleTextAttribute(Handle, attribute);
 	cout << message;
 }
+

@@ -37,3 +37,47 @@ bool GraphicalUserInterface::exitGameScreen() {
 		exitGameScreen();
 	}
 }
+
+// Ingame character menu
+bool GraphicalUserInterface::characterMenu() {
+	int selected = 1;
+	char c = '0';
+
+	screen.outputText(7, 7, 15,     "  Menu                      ");
+	screen.outputText(7, 8, 15,     "                            ");
+
+	while (c != char(13)) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
+		
+		screen.outputText(7, 9, 15, "   *Spells                    ");
+		screen.outputText(7, 10, 15,"                           ");
+		screen.outputText(7, 11, 15,"   *Items                     ");
+		screen.outputText(7, 12, 15,"                           ");
+		screen.outputText(7, 13, 15,"   *Armour                    ");
+		screen.outputText(7, 14, 15,"                           ");
+		screen.outputText(7, 15, 15,"   *Weapons                   ");
+		screen.outputText(7, 16, 15,"                           ");
+		screen.gotoxy(7, 8 + selected);
+		cout << "->";
+		c = _getch();
+
+		if (c == 's') {
+			selected += 2;
+			screen.gotoxy(7, 8 + selected - 2);
+			cout << "  ";
+		}
+		else if (c == 'w') {
+			selected -= 2;
+			screen.gotoxy(7, 8 + selected + 2);
+			cout << "  ";
+		}
+		if (selected < 1) {
+			selected = 1;
+		}
+		else if (selected > 7) {
+			selected = 7;
+		}
+	}
+	return false;
+}
+

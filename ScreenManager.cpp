@@ -313,87 +313,69 @@ bool ScreenManager::isInRange(int tileX, int tileY) {
 	int mag = magnitude(normX, normY);
 
 	if (mag <= playerVision) {
-		
-		return fov(tileX, tileY, playerX, playerY);
+		return true; // FOV HERE
 	}
 	return false;
 }
 
 // return SQRT(x^2+y^2)
 int ScreenManager::magnitude(int x, int y) {
-	return sqrt(pow(x,2)+pow(y,2));
+	return sqrt(pow(x, 2) + pow(y, 2));
 }
 
-// Check every cell between two points in a line.
-bool ScreenManager::fov(int x1, int y1, int x2, int y2) {
-	//here x1 y1 are tile and x2 y2 are player
+// This function returns a line with all the _levelData tiles 
+// that match the line algorithm. 
+bool ScreenManager::fov(int tileX, int tileY, int pX, int pY) {
 
-	return line(x1, y1, x2, y2);
-	return true;
+	bool returnBlocked = true;
+
+	// Case where a tile is in one of the cardinal directions of the player
+	if (tileX == pX) {
+		int lowest = (tileY < pY) ? tileY : pY;
+		int highest = (lowest == tileY) ? pY : tileY;
+		for (int i = lowest; i < highest; i++) {
+			returnBlocked = (_levelData[i][pX] == '1') ? false : returnBlocked;
+		}
+	}
+
+	if (tileY == pY) {
+		int lowest = (tileX < pX) ? tileX : pX;
+		int highest = (lowest == tileX) ? pX : tileX;
+		for (int i = lowest; i < highest; i++) {
+			returnBlocked = (_levelData[pY][i] == '1') ? false : returnBlocked;
+		}
+	}
+
+
+	// Case where tile is North East of the player
+	//  P     
+	//                 T
+	// Note this same code can be used if the two swap places. 
+	if (tileX < pX && tileY < pY) {
+		return line(tileX, tileY, pX, pY);
+	} else if(tileX > pX && tileY > pY) {
+		return line(pX, pY, tileX, tileY);
+	}
+	return returnBlocked;
 }
 
+
+// We care about the slope or the line
 bool ScreenManager::line(int x1, int y1, int x2, int y2) {
-	int w = x2 - x1;
-	int h = y2 - y1;
-	int dx1 = 0;
-	int dy1 = 0;
-	int dx2 = 0;
-	int dy2 = 0;
+	int m_new = 2 * (y2 - y1);
+	int slope_error_new = m_new - (x2 - x1);
+	for (int x = x1, y = y1; x <= x2; x++)
+	{
+		
+		// Add slope to increment angle formed 
+		slope_error_new += m_new;
 
-	if (w < 0) {
-		dx1 = -1;
-	} else if (w > 0) {
-		dx1 = 1;
-	} 
-	
-	if (h < 0) {
-		dy1 = -1;
-	} else if (h > 0) {
-		dy1 = 1;
-	}
-
-	if (w < 0) {
-		dx2 = -1;
-	}
-	else if (w > 0) {
-		dx2 = 1;
-	}
-
-	int longest = abs(w);
-	int shortest = abs(h);
-
-	if (!(longest > shortest)) {
-		longest = abs(h);
-		shortest = abs(w);
-	}
-
-	if (h < 0) {
-		dy2 = -1;
-	}
-	else if (h > 0) {
-		dy2 = 1;
-	}
-	dx2 = 0;
-
-	int numerator = longest >> 1;
-
-	bool first = true;
-	for (int i = 0; i <= longest; i++) {
-
-		if (_levelData[y1][x1] == '1') {
-			return false;
+		// Slope error reached limit, time to 
+		// increment y and update slope error. 
+		if (slope_error_new >= 0)
+		{
+			y++;
+			slope_error_new -= 2 * (x2 - x1);
 		}
-		numerator += shortest;
-		if (!(numerator < longest)) {
-			numerator -= longest;
-			x1 += dx1;
-			y1 += dy1;
-		}
-		else {
-			x1 += dx2;
-			y1 += dy2;
-		}
-
 	}
-	return true;
 }
