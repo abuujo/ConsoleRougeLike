@@ -106,7 +106,7 @@ void GameManager::runGame() {
 // Load game settings from settings file
 // 0 -> up, 1-> down, 2-> left, 3-> right, 4-> difficulty (int) 5-> level
 void GameManager::loadSettings() {
-	string filePath = "../res/settings.txt";
+	string filePath = "settings.txt";
 	ifstream file;
 	file.open(filePath);
 	if (file.fail()) {

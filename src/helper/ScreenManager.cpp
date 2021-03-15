@@ -69,8 +69,8 @@ void ScreenManager::buildOptions() {
 
 // Load map and border chars into vectors.
 void ScreenManager::buildMap(char level) {
-	string levelFile = "../res/" + to_string(level - '0') + ".txt"; // not universal
-	inputData("../res/border.txt", &_borderlData); // Border
+	string levelFile = to_string(level - '0') + ".txt"; // not universal
+	inputData("border.txt", &_borderlData); // Border
 	inputData(levelFile, &_levelData); // Level
 
 	// Find and init Entities.
@@ -93,7 +93,7 @@ void ScreenManager::buildMap(char level) {
 
 // Load legend chars into vector
 void ScreenManager::buildLegend() {
-	inputData("../res/legend.txt", &_legendData); // Level
+	inputData("legend.txt", &_legendData); // Level
 }
 
 // Add screen Data together
@@ -254,12 +254,16 @@ void ScreenManager::printVector(int startx, int starty, vector <string> _vector,
 	int tileIndex = 0;
 	for (int y = 0; y < _vector.size(); y++) {
 		for (int x = 0; x < _vector[y].length(); x++) {
+			screen.outputChar(15, startx + x, starty + y, ' ');
 
+			/*
 			bool inVision = isInRange(x,y);
 			if (vision == true && inVision == false) {
-				screen.outputChar(15, startx + x, starty + y, ' ');
+				
 				continue;
+			
 			}
+			*/
 			// Get attribute
 			int type = _vector[y][x] - '0';
 			screen.outputChar(tiles[type].colour, startx + x, starty + y, tiles[type].tile);
