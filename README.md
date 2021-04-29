@@ -1,6 +1,6 @@
 This is just a small Rougelike I made as a side project.
 
-Programmed in C++ uding cout to display the game and any text.
+Programmed in C++ using cout to display the game and any text.
 
 **To Do:**
 
@@ -12,4 +12,3 @@ Programmed in C++ uding cout to display the game and any text.
  
  *This was made as part of my goal to learn C++*
  
- Yall can yeet this if you want.
